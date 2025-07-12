@@ -1,7 +1,7 @@
 # Offers SDK
 
 An async-first Python SDK for interacting with the Offers API.  
-Provides an easy and Pythonic way to obtain access tokens and manage offers.
+Provides an easy and Pythonic way to obtain&refresh access tokens, register products and manage offers.
 
 ---
 
@@ -23,7 +23,7 @@ This SDK requires [Poetry](https://python-poetry.org/) for dependency management
 1. Install Poetry if you haven't already:
 pip install poetry
 
-2. Install the project dependencies
+2. Install the project dependencies:
 poetry install
 - using poetry, SDK is initialized
 
@@ -37,11 +37,11 @@ Example output:
 C:\Users\<user>\AppData\Local\pypoetry\Cache\virtualenvs\offers-riMDfWzY-py3.13
 
 ## Usage
-Initialize AuthManager with auth_url and refresh_token.
-Call get_access_token() asynchronously to obtain a valid access token.
-The SDK handles token caching and automatic refresh behind the scenes.
-By calling client.py methods you can register a new product or get all offers for a specific product defined by UUID.
-While calling register_product(), offers of the product are automatically created via wrapped Offers API.
+Initialize AuthManager with auth_url and refresh_token. 
+Call get_access_token() asynchronously to obtain a valid access token. 
+The SDK handles token caching and automatic refresh behind the scenes. 
+By calling client.py methods you can register a new product or get all offers for a specific product defined by UUID. 
+While calling register_product(), offers of the product are automatically created via wrapped Offers API. 
 
 ## Tests
 Run tests with:
