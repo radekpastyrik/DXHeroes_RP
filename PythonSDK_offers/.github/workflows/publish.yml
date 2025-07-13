@@ -2,7 +2,7 @@ name: Test, Build and Publish SDK
 
 on:
   release:
-    types: [created]  # Spustí se při vytvoření GitHub release
+    types: [created]
 
 jobs:
   test-build-publish:
@@ -15,7 +15,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'  # Změň dle potřeby
+        python-version: '3.10'
 
     - name: Install Poetry
       run: |
