@@ -1,0 +1,143 @@
+
+<!-- saved from url=(0053)https://python.exercise.applifting.cz/assignment/sdk/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Applifting Python task</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="https://python.exercise.applifting.cz/static/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://python.exercise.applifting.cz/static/favicon-32x32.png">
+    <link href="./Applifting Python task_files/styles.css" rel="stylesheet">
+    <script src="./Applifting Python task_files/script.js.stahování"></script><style type="text/css" id="operaUserStyle"></style>
+</head>
+<body>
+<header>
+    <svg viewBox="0 0 83.7 175.6" width="32">
+        <path d="M83.7,88.7H64.6l-4.9-11.4H24l-4.9,11.4H0L39,0h5.8L83.7,88.7z M30.2,62.7h23.1L41.9,33.3L30.2,62.7z"></path>
+        <path d="M65.8,122.1c0.2,2.6,0,5.1-0.6,7.4c-0.1,0.6-0.3,1.1-0.4,1.6c0,0.1-0.1,0.3-0.1,0.4l-0.3,0.9L58.6,149
+            c-0.2,0.5-1,0.5-1.1,0l-1.9-5.4l-0.4-1.2c-0.6-1.8-3.2-1.7-3.7,0.1l-1,3.8l-7.9,28.8c-0.2,0.6-1,0.6-1.2,0l-7.9-28.8l-1-3.8
+            c-0.5-1.8-3.1-1.9-3.7-0.1l-0.4,1.2l-1.9,5.4c-0.2,0.5-1,0.5-1.1,0l-5.8-16.8c-0.1-0.2-0.2-0.5-0.2-0.7c-0.1-0.3-0.2-0.6-0.3-0.9
+            c-0.1-0.4-0.2-0.8-0.3-1.2c-0.4-1.8-0.6-3.6-0.6-5.5c0-13.7,11.5-24.7,25.4-23.9C55.2,100.8,64.9,110.3,65.8,122.1"></path>
+    </svg>
+    <button onclick="toggleDarkMode()">
+        <svg width="48" height="48">
+            <path d="M24 42q-7.5 0-12.75-5.25T6 24q0-7.5 5.25-12.75T24 6q.4 0 .85.025.45.025 1.15.075-1.8 1.6-2.8 3.95-1
+                2.35-1 4.95 0 4.5 3.15 7.65Q28.5 25.8 33 25.8q2.6 0 4.95-.925T41.9 22.3q.05.6.075.975Q42 23.65 42 24q0
+                7.5-5.25 12.75T24 42Zm0-3q5.45 0 9.5-3.375t5.05-7.925q-1.25.55-2.675.825Q34.45 28.8 33 28.8q-5.75
+                0-9.775-4.025T19.2 15q0-1.2.25-2.575.25-1.375.9-3.125-4.9 1.35-8.125 5.475Q9 18.9 9 24q0 6.25 4.375
+                10.625T24 39Zm-.2-14.85Z"></path>
+        </svg>
+    </button>
+</header>
+
+<h1>Applifting Python task</h1>
+
+<p>
+    Welcome to the Applifting Python task! To begin, please follow the steps below:
+</p>
+<ol>
+    <li>Go through the assignment brief and read the requirements</li>
+    <li>Request access to our service below</li>
+    <li>Have fun :)</li>
+    <li>Let us know once you're done</li>
+</ol>
+<h2>Access details</h2>
+
+<!-- If user has registered, show their access token. -->
+
+<p>
+    Please enter your email below. We will generate a refresh token for your application.
+</p>
+<form action="https://python.exercise.applifting.cz/assignment/sdk/" method="get" id="request-access-form">
+    <label for="email">Your email:</label>
+    <input type="email" id="email" name="email">
+    <input type="submit" class="btn" value="Request access">
+</form>
+<p>Hint: In case you lose the token, just enter the email that you entered before! :)</p>
+
+
+<h2>Assignment - Python SDK for Offers API</h2>
+
+<p>Create a production-ready Python SDK that enables developers to easily integrate with our Offers microservice to register products and retrieve offers. Offer service is provided by us, you don't need to implement it, see:</p>
+
+<ul>
+<li><a href="https://python.exercise.applifting.cz/docs">Swagger</a></li>
+<li><a href="https://python.exercise.applifting.cz/redoc">Redoc</a></li>
+</ul>
+
+<h3>Requirements</h3>
+
+<ul>
+<li>Create a Python SDK that wraps the Offers API.</li>
+<li>Provide an API to register products.</li>
+<li>Provide an API to retrieve offers for a product.</li>
+</ul>
+
+<h3>Data model</h3>
+
+<p><strong>Product</strong> - corresponds to some imaginary product that you can buy.</p>
+
+<ul>
+<li><code>id</code> - UUID</li>
+<li><code>name</code> - string</li>
+<li><code>description</code> - string</li>
+</ul>
+
+<p>A product has many offers.</p>
+
+<p><strong>Offer</strong> - represents the product being offered for some price.</p>
+
+<ul>
+<li><code>id</code> - UUID</li>
+<li><code>price</code> - integer</li>
+<li><code>items_in_stock</code> - integer</li>
+</ul>
+
+<p>Each offer belongs to one product.</p>
+
+<h3>Specification</h3>
+
+<p>Must haves:</p>
+
+<ul>
+<li>Your SDK should feel intuitive and Pythonic</li>
+<li>Automatically handle token refresh without user intervention
+<ul>
+<li>Your refresh token is tied to your email and never expires - you only need one.</li>
+<li>Turn your refresh token into access tokens via the auth endpoint.</li>
+<li>Be careful - access tokens expire.</li>
+</ul></li>
+<li>SDK must be async-first using async/await for API calls</li>
+<li>Use an HTTP client of your choice for API calls</li>
+<li>Full type hints throughout the codebase</li>
+<li>Implement comprehensive error handling with meaningful exceptions</li>
+<li>Write comprehensive test suite for your SDK using <code>pytest</code>.</li>
+<li>Add clear README with quickstart guide and examples</li>
+<li><strong>Push your solution into a git repository (GitHub, GitLab, ...) and send us a link.</strong></li>
+</ul>
+
+<p>You can earn extra points for:</p>
+
+<ul>
+<li>Support for multiple HTTP clients (httpx, requests, aiohttp) with configurable backends.</li>
+<li>Consider adding retry logic for transient network failures with exponential backoff.</li>
+<li>Generate SDK methods automatically from OpenAPI specification provided above.</li>
+<li>Provide advanced configuration options (environment variables, config files, etc.).</li>
+<li>Add advanced SDK features:
+<ul>
+<li>CLI companion tool for testing the SDK from command line.</li>
+<li>Plugin architecture for extensible request/response processing.</li>
+<li>Add synchronous wrapper on top of async implementation.</li>
+<li>Caching layer for offer data with configurable TTL.</li>
+<li>Request middleware hooks for logging, metrics, or custom headers.</li>
+<li>Batch operations for efficient handling of multiple product registrations.</li>
+</ul></li>
+<li>Package your SDK for distribution with proper packaging configuration.
+<ul>
+<li>Demonstrate it can be built and installed locally using your preferred tool (pip, uv, poetry, etc.)</li>
+<li>Optionally test publishing to <a href="https://test.pypi.org/">TestPyPI</a> (the test instance of PyPI).</li>
+</ul></li>
+</ul>
+
+<p>That's it! Good luck, and most importantly, <strong>have fun!</strong> </p>
+
+
+
+</body></html>
