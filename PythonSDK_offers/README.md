@@ -17,6 +17,7 @@ Provides an easy and Pythonic way to obtain&refresh access tokens, register prod
 ---
 
 ## Installation
+Configuration file pyproject.toml in PythonSDK_offers folder, from here you can start all installation.
 
 This SDK requires [Poetry](https://python-poetry.org/) for dependency management.
 
@@ -38,6 +39,14 @@ poetry env info --path
 
 Example output:
 - C:\Users\<user>\AppData\Local\pypoetry\Cache\virtualenvs\offers-riMDfWzY-py3.13
+
+## Distribution 
+Distribution files created in dist folder in PythonSDK_offers folder. 
+
+Installing by:
+
+pip install dist/offers-0.1.0-py3-none-any.whl
+
 
 ## Usage
 - Initialize AuthManager with auth_url and refresh_token. 
