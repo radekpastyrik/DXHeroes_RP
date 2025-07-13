@@ -59,3 +59,10 @@ pip install dist/offers-0.1.0-py3-none-any.whl
 Run tests with:
 
 pytest
+
+## Requirements
+Python with the newest version. Programmed with Python 3.13.2.
+
+Use atleast 3.9.
+
+While working with main.py - update REFRESH_TOKEN in .env file. Kept in here mine for a testing usage - but highly not recommended to share your tokens!
