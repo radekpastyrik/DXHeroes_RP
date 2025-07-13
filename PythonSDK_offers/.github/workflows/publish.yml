@@ -7,6 +7,7 @@ on:
 jobs:
   test-build-publish:
     runs-on: ubuntu-latest
+    environment: testpypi
 
     steps:
     - name: Checkout repository
