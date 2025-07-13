@@ -10,3 +10,9 @@ Relations between models: Product could have multiple Offers, Offer could have o
 
 
 By poetry install in PythonSDK_offers, project will be installed.
+
+Project also published on test.pypi.org
+
+Project: DXHeroes_RP
+
+At the moment pending!
