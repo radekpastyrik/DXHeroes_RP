@@ -58,4 +58,8 @@ pip install dist/offers-0.1.0-py3-none-any.whl
 ## Tests
 Run tests with:
 
-pytest
+pytest 
+
+or 
+
+poetry run pytest

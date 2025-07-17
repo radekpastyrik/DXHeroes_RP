@@ -1,18 +1,9 @@
-import httpx
-
-
 class OffersAPIError(Exception):
     """Base exception for Offers API errors."""
 
-    def __init__(self, response: httpx.Response):
-        self.status_code = response.status_code
-        self.response = response
-        try:
-            self.detail = response.json().get("detail", response.text)
-            
-        except Exception:
-            self.detail = response.text
-
+    def __init__(self, status_code: int, detail: str):
+        self.status_code = status_code
+        self.detail = detail
         super().__init__(self._format_message())
 
     def _format_message(self) -> str:
@@ -20,29 +11,25 @@ class OffersAPIError(Exception):
 
 
 class AuthenticationError(OffersAPIError):
-    '''Error code 401, bad authentication.'''
-    def __init__(self, response: httpx.Response):
-        super().__init__(response)
+    """Error code 401, bad authentication."""
+    pass
 
 
 class ProductNotFoundError(OffersAPIError):
-    '''Error code 404, not registred product.'''
-    def __init__(self, response: httpx.Response):
-        super().__init__(response)
+    """Error code 404, product not registered."""
+    pass
 
 
 class ProductDuplicityError(OffersAPIError):
-    '''Error code 409, product already registred.'''
-    def __init__(self, response: httpx.Response):
-        super().__init__(response)
+    """Error code 409, product already registered."""
+    pass
 
 
 class BadRequestError(OffersAPIError):
-    '''Error code 400/422, bad request.'''
-    def __init__(self, response: httpx.Response):
-        super().__init__(response)
+    """Error code 400/422, bad request."""
+    pass
+
 
 class ValidationError(OffersAPIError):
-    '''Error code 422, validation error.'''
-    def __init__(self, response: httpx.Response):
-        super().__init__(response)
+    """Error code 422, validation error."""
+    pass

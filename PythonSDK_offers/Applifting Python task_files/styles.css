@@ -1,0 +1,108 @@
+@font-face {
+    src: url("/static/fonts/ginto-normal-regular.otf") format("opentype");
+    src: url("/static/fonts/ginto-normal-regular.woff") format("woff");
+    font-family: Ginto;
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    src: url("/static/fonts/ginto-normal-regular-ita.otf") format("opentype");
+    src: url("/static/fonts/ginto-normal-regular-ita.woff") format("woff");
+    font-family: Ginto;
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    src: url("/static/fonts/ginto-normal-bold.otf") format("opentype");
+    src: url("/static/fonts/ginto-normal-bold.woff") format("woff");
+    font-family: Ginto;
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    color: #14141f;
+    fill: #14141f;
+    background: #ffffff;
+    font-family: Ginto, serif;
+    font-size: 16px;
+    line-height: 1.5em;
+    padding: 2em;
+    margin: auto;
+    max-width: 42em;
+    text-align: justify;
+    transition-duration: 250ms;
+}
+
+body a:link, body a:visited {
+    color: #73c37c;
+}
+
+body a:hover, body a:active {
+    color: #fac61f;
+}
+
+body.dark-mode {
+    color: #ffffff;
+    background: #14141f;
+    fill: #ffffff;
+}
+
+body.dark-mode a:link, body.dark-mode a:visited {
+    color: #c8c6c5;
+}
+
+body.dark-mode a:hover, body.dark-mode a:active {
+    color: #f0f0f0;
+}
+
+ul, ol {
+    padding-left: 1.5em;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+input {
+    font: inherit;
+}
+
+.btn {
+    background-color: #14141f;
+    color: #ffffff;
+    border: none;
+    padding: 3px 12px 3px 12px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+
+body.dark-mode .btn {
+    background-color: #ffffff;
+    color: #14141f;
+}
+
+#access-info {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #000000;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+body.dark-mode #access-info {
+    border: 2px solid #ffffff;
+}

@@ -10,9 +10,10 @@ keywords = ["sdk", "async", "httpx", "offers"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-httpx = "^0.25"
+httpx = "^0.28.1"
 pydantic = "^2.0"
 python-dotenv = "^1.1.1"
+aiohttp = "^3.12.14"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"
