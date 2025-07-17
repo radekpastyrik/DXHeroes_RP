@@ -26,6 +26,9 @@ class AuthManager:
         self._client = http_client or HTTPXClient()
         self._token_cache_path = token_cache_path or TOKEN_CACHE_FILE
 
+    def set_token_cache_path(self, path: Path):
+        self._token_cache_path = path
+
     async def get_access_token(self) -> str:
         # Try loading token from cache
         token_data = self._load_token_cache()

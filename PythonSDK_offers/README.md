@@ -12,9 +12,15 @@ Provides an easy and Pythonic way to obtain&refresh access tokens, register prod
 - **Single refresh token usage** – your refresh token is tied to your email and never expires.
 - **Full type hints** – for better IDE support and code quality.
 - **Comprehensive error handling** – meaningful exceptions for clear error diagnosis.
-- **Complete test coverage** – tests written using `pytest` and mocks.
+- **Complete test coverage** – tests written using `pytest` and mocks (unit and integration tests).
 
 ---
+
+## Bonus Features
+- **Multiple HTTP client support** - supports usage of aiohttp, httpx and requests.
+- **Dotenv configuration file support** - uses .env file to load refresh token and base url of API.
+- **Packaged SDK for distribution** - generated distribution files via poetry in dist folder (.whl file).
+- **TestPyPI** - SDK is published on TestP507yPI, at the moment as pending.
 
 ## Installation
 Configuration file pyproject.toml in PythonSDK_offers folder, from here you can start all installation.
@@ -29,6 +35,8 @@ poetry install
 - using poetry, SDK is initialized
 
 If still not working, some tips for VS Code:
+
+CTRL+SHIFT+P
 
 Python: Select Interpreter  # insert path to poetry env
 
@@ -54,11 +62,13 @@ pip install dist/offers-0.1.0-py3-none-any.whl
 - The SDK handles token caching and automatic refresh behind the scenes. 
 - By calling client.py methods you can register a new product or get all offers for a specific product defined by UUID. 
 - While calling register_product(), offers of the product are automatically created via wrapped Offers API. 
+- Example file for SDK usage: PythonSDK_offers/examples/main.py
+
 
 ## Tests
 Run tests with:
 
-pytest
+poetry run pytest
 
 ## Requirements
 Python with the newest version. Programmed with Python 3.13.2.
