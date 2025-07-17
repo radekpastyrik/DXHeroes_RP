@@ -9,7 +9,17 @@ refresh_token: str = os.environ["REFRESH_TOKEN"]
 BASE_URL: str = os.environ["BASE_URL"]
 
 async def main():
-    client = OffersClient(base_url=BASE_URL, refresh_token=refresh_token, http_client=RequestsClient())
+    products = [
+    Product(name="Virtual product A", description="...", id=uuid4()),
+    Product(name="Virtual product B", description="...", id=uuid4()),
+    Product(name="Virtual product C", description="...", id=uuid4())
+    ]
+
+    # Register products in batch
+    client = OffersClient(base_url=BASE_URL, refresh_token=refresh_token)
+    results = await client.register_products_batch(products)
+    print(results)
+
 
     randomUUID: UUID = uuid4()  # possible to use as an argument to register product, not used - automatically generated UUID
     product: Product = await client.register_product(

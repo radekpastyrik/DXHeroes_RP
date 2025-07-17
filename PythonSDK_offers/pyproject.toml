@@ -8,13 +8,18 @@ readme = "README.md"
 packages = [{ include = "offers_sdk" }]
 keywords = ["sdk", "async", "httpx", "offers"]
 
+[tool.poetry.scripts]
+offers = "offers_cli_tool.offers_cli:cli"
+
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 httpx = "^0.28.1"
 pydantic = "^2.0"
 python-dotenv = "^1.1.1"
 aiohttp = "^3.12.14"
 requests = "^2.32.4"
+tenacity = "^9.1.2"
+click = "^8.2.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"

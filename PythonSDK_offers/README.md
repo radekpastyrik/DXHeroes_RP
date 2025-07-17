@@ -20,6 +20,8 @@ Provides an easy and Pythonic way to obtain&refresh access tokens, register prod
 - **Multiple HTTP client support** - supports usage of aiohttp, httpx and requests.
 - **Dotenv configuration file support** - uses .env file to load refresh token and base url of API.
 - **Packaged SDK for distribution** - generated distribution files via poetry in dist folder (.whl file).
+- **Retry logic** - Retry logic implemented for a network failures using exponential backoff.
+- **CLI tool** - tool for testing the SDK from command line.
 - **TestPyPI** - SDK is published on TestP507yPI, at the moment as pending.
 
 ## Installation
@@ -64,6 +66,25 @@ pip install dist/offers-0.1.0-py3-none-any.whl
 - While calling register_product(), offers of the product are automatically created via wrapped Offers API. 
 - Example file for SDK usage: PythonSDK_offers/examples/main.py
 
+## CLI usage:
+You can easily start a command window in folder PythonSDK_offers. 
+
+Installation of poetry (poetry install) is firstly required!
+
+From here you can run command line commands e.g.:
+
+- **Register product** - name, description http_client and ID are optional, if not inserted, everything is automatically defined, defaultly used client is httpx.
+
+poetry run offers register --name "Virtual product" --description "Some virtual product description" --client httpx
+
+or with id manual specification (ID could be already created, use your own):
+
+poetry run offers register --id 0d7c7424-449a-4531-b33f-d3c2b57e9a43
+
+
+- **Get offers from ID** - By the given ID of product, return all offers. Parameter ID is required.
+
+poetry run offers offers 065464bb-4b72-4583-96d5-74a23ff451d4 --client httpx
 
 ## Tests
 Run tests with:
@@ -73,6 +94,6 @@ poetry run pytest
 ## Requirements
 Python with the newest version. Programmed with Python 3.13.2.
 
-Use atleast 3.9.
+Use atleast 3.10.
 
 While working with main.py - update REFRESH_TOKEN in .env file. Kept in here mine for a testing usage - but highly not recommended to share your tokens!

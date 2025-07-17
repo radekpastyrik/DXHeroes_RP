@@ -6,7 +6,7 @@ from .http_clients.aiohttp_client import AioHTTPClient
 from .http_clients.requests_client import RequestsClient
 from .auth import AuthManager
 from .models import Product, Offer, UUID, uuid4
-from typing import List, Optional
+from typing import List, Optional, Union
 import asyncio
 
 class OffersClient:
@@ -23,6 +23,18 @@ class OffersClient:
             "Bearer": access_token
         }
     
+    async def register_products_batch(self, products: List[Product]) -> List[Union[Product, OffersAPIError]]:
+        """Batch implementation using either sequential or parallel calls"""
+
+        async def try_register(p: Product):
+            try:
+                return await self.register_product(name=p.name, description=p.description, id=p.id)
+            except OffersAPIError as e:
+                return e
+
+        return await asyncio.gather(*(try_register(p) for p in products))
+    
+
     async def register_product(self, name: str, description: str, id: Optional[UUID] = None) -> Product:
         product = Product(id=id or uuid4(), name=name, description=description)  # generates ID automatically if not provided
         headers = await self._get_headers()
@@ -55,13 +67,13 @@ class OffersClient:
 
         return Product(id=UUID(body["id"]), name=name, description=description)
 
+
     async def get_offers(self, product_id: str) -> List[Offer]:
         headers = await self._get_headers()
         response = await self._http.get(
             f"{self._base_url}/api/v1/products/{product_id}/offers",
             headers=headers
         )
-
 
         status = response.status if hasattr(response, "status") else response.status_code
         if hasattr(response, "json_data"):

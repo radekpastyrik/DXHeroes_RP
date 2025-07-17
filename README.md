@@ -16,3 +16,7 @@ Project also published on test.pypi.org
 Project: DXHeroes_RP
 
 At the moment pending!
+
+You can also test SDK by using CLI tool while running in PythonSDK_offers (poetry install required).
+
+In the main folder, there is also file work_load.txt to see some approximately time spent on the task.
