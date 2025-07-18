@@ -26,6 +26,9 @@ jobs:
           curl -sSL https://install.python-poetry.org | python3 -
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
+      - name: Generate poetry.lock (if missing or outdated)
+        run: poetry lock --no-update
+
       - name: Install dependencies
         run: poetry install
 
@@ -40,5 +43,7 @@ jobs:
 
       - name: Publish to TestPyPI
         env:
-          POETRY_PYPI_TOKEN_TESTPYPI: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        run: poetry publish -r testpypi
+          TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        run: |
+          source $HOME/.poetry/env
+          poetry run poetry publish -r testpypi --build

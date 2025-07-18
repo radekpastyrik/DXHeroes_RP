@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "offers"
-version = "0.1.0"
+version = "0.1.1"
 description = "Async Python SDK for Offers API"
 authors = ["Radek Pastyrik: radek.pastyrik@gmail.com"]
 license = "MIT"
