@@ -23,14 +23,14 @@ async def main():
 
     randomUUID: UUID = uuid4()  # possible to use as an argument to register product, not used - automatically generated UUID
     product: Product = await client.register_product(
-        # id=randomUUID,
+        id=randomUUID,  # could be empty, then it will be generated automatically
         name="Virtual product",
         description="Some virtual product description."
     )
     print("Registered product:", product)
 
 
-    offers: List[Offer] = await client.get_offers(product_id=product.id)
+    offers: List[Offer] = await client.get_offers(product_id=str(randomUUID))
     print(f"Offers for product UUID: '{product.id}'\n" + "\n".join(str(offer) for offer in offers))
 
 

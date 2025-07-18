@@ -5,4 +5,7 @@ Sunday: 8h - finalizing must haves, support of multiple http clients,  packaging
 Monday: 1h - refreshing of access token bugfix, token caching (file) implemented
 Tuesday: 2h - tests for auth.py updated/created
 
-Thursday: 5.5h Tests for client created/updated, investigation how to work with retry logic + implementation, batch operations for registrations+example, CLI investigation/implementation/testing
+Thursday: 5.5h - Tests for client created/updated, investigation how to work with retry logic + implementation, batch operations for registrations+example, CLI investigation/implementation/testing
+Friday: 4h - Investigation of automatic generation via openapi (20-30m), implementing/describing usage of openapi python client generator (30m), creating example script of using generated methods (20m), finding out problems with generated SDK (rest of the time)
+		- found a problem when using generated AuthenticationClient that while token is included in it as parameter, it cant successfully register products, token have to be explicitly added to parameters of request method
+
