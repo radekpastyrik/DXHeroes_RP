@@ -8,6 +8,10 @@ readme = "README.md"
 packages = [{ include = "offers_sdk" }]
 keywords = ["sdk", "async", "httpx", "offers"]
 
+[[tool.poetry.source]]
+name = "testpypi"
+url = "https://test.pypi.org/legacy/"
+
 [tool.poetry.scripts]
 offers = "offers_cli_tool.offers_cli:cli"
 
