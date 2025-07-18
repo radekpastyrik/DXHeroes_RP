@@ -27,7 +27,7 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Generate poetry.lock (if missing or outdated)
-        run: poetry lock --no-update
+        run: poetry lock
 
       - name: Install dependencies
         run: poetry install
