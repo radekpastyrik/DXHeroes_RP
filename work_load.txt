@@ -9,3 +9,7 @@ Thursday: 5.5h - Tests for client created/updated, investigation how to work wit
 Friday: 4h - Investigation of automatic generation via openapi (20-30m), implementing/describing usage of openapi python client generator (30m), creating example script of using generated methods (20m), finding out problems with generated SDK (rest of the time)
 		- found a problem when using generated AuthenticationClient that while token is included in it as parameter, it cant successfully register products, token have to be explicitly added to parameters of request method
 
+	2h - Investigation of using synchronous wrapper for async implementation, implementation of synchronous wrapper+creating example.
+
+
+Total: 8+8+1+2+5.5+4+2= 30.5h
