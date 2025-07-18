@@ -24,15 +24,19 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
+        working-directory: PythonSDK_offers
         run: poetry install
 
       - name: Run tests
+        working-directory: PythonSDK_offers
         run: poetry run pytest
 
       - name: Build package
+        working-directory: PythonSDK_offers
         run: poetry build
 
       - name: Publish to TestPyPI
+        working-directory: PythonSDK_offers
         env:
           POETRY_PYPI_TOKEN_TESTPYPI: ${{ secrets.TEST_PYPI_API_TOKEN }}
         run: poetry publish -r testpypi --build
