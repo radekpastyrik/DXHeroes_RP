@@ -24,7 +24,7 @@ Provides an easy and Pythonic way to obtain&refresh access tokens, register prod
 - **CLI tool** - tool for testing the SDK from command line.
 - **Automatic generation of SDK** - using OpenAPI and given .json file there are generated methods to work with API.
 - **Synchronous wrapper** - included synchronous wrapper for an asynchronous implementation, running request until completed.
-- **TestPyPI** - SDK is published on TestP507yPI, at the moment as pending.
+- **TestPyPI** - SDK is published on TestPyPI, at the moment as pending.
 
 ## Installation
 Configuration file pyproject.toml in PythonSDK_offers folder, from here you can start all installation.
@@ -55,7 +55,14 @@ Example output:
 ## Distribution 
 Distribution files created in dist folder in PythonSDK_offers folder. 
 
+Publishing by:
+
+poetry publish -r testpypi --username __token__ --password pypi-<token>
+
 Installing by:
+pip install -i https://test.pypi.org/simple/ offers
+
+or 
 
 pip install dist/offers-0.1.0-py3-none-any.whl
 

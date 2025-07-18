@@ -1,16 +1,12 @@
 [tool.poetry]
 name = "offers"
-version = "0.1.1"
+version = "0.1.2"
 description = "Async Python SDK for Offers API"
 authors = ["Radek Pastyrik: radek.pastyrik@gmail.com"]
 license = "MIT"
 readme = "README.md"
 packages = [{ include = "offers_sdk" }]
 keywords = ["sdk", "async", "httpx", "offers"]
-
-[[tool.poetry.source]]
-name = "testpypi"
-url = "https://test.pypi.org/legacy/"
 
 [tool.poetry.scripts]
 offers = "offers_cli_tool.offers_cli:cli"
@@ -20,12 +16,11 @@ python = "^3.10"
 httpx = "^0.28.1"
 pydantic = "^2.0"
 python-dotenv = "^1.1.1"
-aiohttp = "^3.12.14"
-requests = "^2.32.4"
 tenacity = "^9.1.2"
 click = "^8.2.1"
 openapi-generator-cli = "^7.14.0"
-python-exercise-client = {path = "./python-exercise-client", develop = true}
+requests = "^2.32.4"
+aiohttp = "^3.12.14"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"
