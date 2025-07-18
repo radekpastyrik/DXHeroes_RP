@@ -22,6 +22,7 @@ Provides an easy and Pythonic way to obtain&refresh access tokens, register prod
 - **Packaged SDK for distribution** - generated distribution files via poetry in dist folder (.whl file).
 - **Retry logic** - Retry logic implemented for a network failures using exponential backoff.
 - **CLI tool** - tool for testing the SDK from command line.
+- **Automatic generation of SDK** - using OpenAPI and given .json file there are generated methods to work with API.
 - **TestPyPI** - SDK is published on TestP507yPI, at the moment as pending.
 
 ## Installation
@@ -85,6 +86,23 @@ poetry run offers register --id 0d7c7424-449a-4531-b33f-d3c2b57e9a43
 - **Get offers from ID** - By the given ID of product, return all offers. Parameter ID is required.
 
 poetry run offers offers 065464bb-4b72-4583-96d5-74a23ff451d4 --client httpx
+
+## Automatic SDK generation
+There is also included automatic generation of SDK by given OpenAPI generator - openapi-python-client is included into pyproject.toml, by poetry installation you can freely generate it yourself.
+
+Go to command line into folder: ./DXHeroes_RP/PythonSDK_offers. If you did not installed dependencies of the project yet, run:
+
+poetry install
+
+then you can generate SDK by:
+
+poetry run openapi-python-client generate --path openapi.json
+
+Note: You have to remove old generated SDK (whole folder named as 'python-exercise-client').
+
+If there is needed to use config.yaml file, there is attached one in the ./DXHeroes_RP/PythonSDK_offers folder.
+
+Example of used automatic SDK located in examples/automatic_sdk.py.
 
 ## Tests
 Run tests with:
