@@ -38,4 +38,4 @@ jobs:
       - name: Publish to TestPyPI
         env:
           POETRY_PYPI_TOKEN_TESTPYPI: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        run: poetry publish -r testpypi --build
+        run: yes | poetry publish -r testpypi --build
