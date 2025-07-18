@@ -59,7 +59,10 @@ Publishing by:
 
 poetry publish -r testpypi --username __token__ --password pypi-<token>
 
+Note: poetry version patch and poetry build required before publishing!
+
 Installing by:
+
 pip install -i https://test.pypi.org/simple/ offers
 
 or 

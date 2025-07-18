@@ -5,7 +5,6 @@ import json
 from typing import Optional
 from pathlib import Path
 from datetime import datetime, timedelta
-
 from dotenv import load_dotenv
 from python_exercise_client.client import Client, AuthenticatedClient
 from python_exercise_client.api.default import auth_api_v1_auth_post
