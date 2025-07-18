@@ -23,6 +23,7 @@ Provides an easy and Pythonic way to obtain&refresh access tokens, register prod
 - **Retry logic** - Retry logic implemented for a network failures using exponential backoff.
 - **CLI tool** - tool for testing the SDK from command line.
 - **Automatic generation of SDK** - using OpenAPI and given .json file there are generated methods to work with API.
+- **Synchronous wrapper** - included synchronous wrapper for an asynchronous implementation, running request until completed.
 - **TestPyPI** - SDK is published on TestP507yPI, at the moment as pending.
 
 ## Installation

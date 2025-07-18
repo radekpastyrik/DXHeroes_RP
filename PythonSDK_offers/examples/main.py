@@ -2,7 +2,6 @@ import asyncio
 import os
 from dotenv import load_dotenv
 from offers_sdk.client import OffersClient, Product, Offer, List, UUID, uuid4, HTTPXClient, AioHTTPClient, RequestsClient
-from offers_sdk.auth import AuthManager
 
 load_dotenv()
 refresh_token: str = os.environ["REFRESH_TOKEN"]
@@ -17,6 +16,8 @@ async def main():
 
     # Register products in batch
     client = OffersClient(base_url=BASE_URL, refresh_token=refresh_token)
+    # or define http client
+    # client = OffersClient(base_url=BASE_URL, refresh_token=refresh_token, http_client=HTTPXClient())
     results = await client.register_products_batch(products)
     print(results)
 
