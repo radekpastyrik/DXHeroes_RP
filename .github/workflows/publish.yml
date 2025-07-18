@@ -43,8 +43,6 @@ jobs:
 
       - name: Publish to TestPyPI
         env:
-          POETRY_HTTP_BASIC_TESTPYPI_USERNAME: __token__
-          POETRY_HTTP_BASIC_TESTPYPI_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        run: |
-          poetry config repositories.testpypi https://test.pypi.org/legacy/
-          poetry publish --repository testpypi
+          TESTPYPI_USERNAME: __token__
+          TESTPYPI_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        run: poetry publish -r testpypi --username "TESTPYPI_USERNAME" --password "$TESTPYPI_PASSWORD"
