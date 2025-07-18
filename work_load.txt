@@ -1,0 +1,8 @@
+Time spent:
+Saturday: around 8h - Structure, testing interactions with API, refreshing token implementation, dotenv included, first draft of tests creation. Must haves done.
+Sunday: 8h - finalizing must haves, support of multiple http clients,  packaging of SDK, investigation how to publish on TestPyPI
+
+Monday: 1h - refreshing of access token bugfix, token caching (file) implemented
+Tuesday: 2h - tests for auth.py updated/created
+
+Thursday: 5.5h Tests for client created/updated, investigation how to work with retry logic + implementation, batch operations for registrations+example, CLI investigation/implementation/testing
