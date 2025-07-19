@@ -1,5 +1,5 @@
-project_name: offers_sdk
-package_name: offers_sdk.api_client
+project_name: python_offers_sdk
+package_name: python_offers_sdk.api_client
 package_version: "0.1.0"
 async_client: true
 use_path_prefixes_for_title_model_names: true
