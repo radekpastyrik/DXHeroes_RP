@@ -48,9 +48,19 @@ You can find path to your env by inserting
 
 poetry env info --path
 
-
 Example output:
 - C:\Users\<user>\AppData\Local\pypoetry\Cache\virtualenvs\offers-riMDfWzY-py3.13
+
+3. Set up your .env file:
+
+REFRESH_TOKEN=your_refresh_token_here
+
+4. Check example files 
+
+PythonSDK_offers/examples/
+
+and you can run it.
+
 
 ## Distribution 
 Distribution files created in dist folder in PythonSDK_offers folder. 
