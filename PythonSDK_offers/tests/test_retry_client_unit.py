@@ -2,6 +2,8 @@ import pytest
 from unittest.mock import AsyncMock
 from offers_sdk.http_clients.retry_client import RetryingHTTPClient
 
+# Unit test
+
 
 class DummyFailingClient:
     """Client which fails every time"""

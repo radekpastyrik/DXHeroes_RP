@@ -11,6 +11,8 @@ from offers_sdk.exceptions import (
     OffersAPIError
 )
 
+# Unit test
+
 
 class MockResponse:
     """Mock class for simulating HTTP responses of various clients"""

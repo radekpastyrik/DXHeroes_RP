@@ -8,11 +8,8 @@ from offers_sdk.auth import AuthManager
 from offers_sdk.exceptions import AuthenticationError, BadRequestError, ValidationError, OffersAPIError
 from offers_sdk.http_clients.base import AsyncHTTPClient
 
-# Unit test
+# Unit tests
 
-@pytest.fixture
-def temp_token_file(tmp_path):
-    return tmp_path / ".auth_token_cache.json"
 
 class MockResponse:
     def __init__(self, status_code: int, json_data: dict):
@@ -24,6 +21,7 @@ class MockResponse:
 
 @pytest.mark.asyncio
 async def test_get_access_token_from_cache(temp_token_file):
+    '''Test accessing and achieving of token'''
     token_data = {
         "access_token": "cached_token",
         "created": (datetime.now() - timedelta(seconds=60)).isoformat()
@@ -36,6 +34,7 @@ async def test_get_access_token_from_cache(temp_token_file):
 
 @pytest.mark.asyncio
 async def test_refresh_access_token_success(temp_token_file):
+    '''Testing refreshing token'''
     mock_client = AsyncMock(spec=AsyncHTTPClient)
     mock_response = MockResponse(201, {"access_token": "new_token"})
     mock_client.post.return_value = mock_response
@@ -52,6 +51,7 @@ async def test_refresh_access_token_success(temp_token_file):
 
 @pytest.mark.asyncio
 async def test_refresh_token_raises_authentication_error(temp_token_file):
+    '''Test refreshing with wrong token'''
     mock_client = AsyncMock(spec=AsyncHTTPClient)
     mock_response = MockResponse(401, {"detail": "Access token invalid"})
     mock_client.post.return_value = mock_response

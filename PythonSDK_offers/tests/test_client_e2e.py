@@ -2,7 +2,6 @@ import os
 import pytest
 import time
 from uuid import uuid4
-from dotenv import load_dotenv
 from offers_sdk.client import OffersClient
 from offers_sdk.models import Product, Offer
 from offers_sdk.exceptions import (
@@ -15,19 +14,16 @@ from offers_sdk.http_clients.httpx_client import HTTPXClient
 from offers_sdk.http_clients.aiohttp_client import AioHTTPClient
 from offers_sdk.http_clients.requests_client import RequestsClient
 
-
-load_dotenv()
-REFRESH_TOKEN: str = os.environ["REFRESH_TOKEN"]
-BASE_URL: str = os.environ["BASE_URL"]
+# Integration tests - end-point to end-point (E2E)
 
 
 class TestOffersClientE2E:
-    """End-to-end testing of OffersClient against real API"""
+    """Testing of OffersClient against real API"""
 
     @pytest.mark.asyncio
-    async def test_client_e2e_register_and_get_offers_success(self):
+    async def test_client_e2e_register_and_get_offers_success(self, base_url, valid_refresh_token):
         """Successful registration of product and getting offers"""
-        client = OffersClient(base_url=BASE_URL, refresh_token=REFRESH_TOKEN)
+        client = OffersClient(base_url=base_url, refresh_token=valid_refresh_token)
         
         # Creating unique product name
         timestamp = int(time.time())
@@ -59,9 +55,9 @@ class TestOffersClientE2E:
             assert isinstance(offer.items_in_stock, int)
 
     @pytest.mark.asyncio 
-    async def test_client_e2e_with_custom_product_id(self):
+    async def test_client_e2e_with_custom_product_id(self, base_url, valid_refresh_token):
         """Testing registration of product with custom ID"""
-        client = OffersClient(base_url=BASE_URL, refresh_token=REFRESH_TOKEN)
+        client = OffersClient(base_url=base_url, refresh_token=valid_refresh_token)
         
         custom_id = uuid4()
         
@@ -74,9 +70,9 @@ class TestOffersClientE2E:
         assert product.id == custom_id
 
     @pytest.mark.asyncio
-    async def test_client_e2e_register_product_duplicate_error(self):
+    async def test_client_e2e_register_product_duplicate_error(self, base_url, valid_refresh_token):
         """Testing duplicate error when registering product"""
-        client = OffersClient(base_url=BASE_URL, refresh_token=REFRESH_TOKEN)
+        client = OffersClient(base_url=base_url, refresh_token=valid_refresh_token)
         
         # Use same ID for both registration attempts
         duplicate_id = uuid4()
@@ -102,9 +98,9 @@ class TestOffersClientE2E:
         assert exc_info.value.status_code == 409
 
     @pytest.mark.asyncio
-    async def test_client_e2e_get_offers_nonexistent_product(self):
+    async def test_client_e2e_get_offers_nonexistent_product(self, base_url, valid_refresh_token):
         """Testing error when getting offers for non-existing product"""
-        client = OffersClient(base_url=BASE_URL, refresh_token=REFRESH_TOKEN)
+        client = OffersClient(base_url=base_url, refresh_token=valid_refresh_token)
         
         # Use random UUID
         nonexistent_id = str(uuid4())
@@ -115,9 +111,9 @@ class TestOffersClientE2E:
         assert exc_info.value.status_code == 404
 
     @pytest.mark.asyncio
-    async def test_client_e2e_invalid_product_id_format(self):
+    async def test_client_e2e_invalid_product_id_format(self, base_url, valid_refresh_token):
         """Testing validation error with invalid UUID format"""
-        client = OffersClient(base_url=BASE_URL, refresh_token=REFRESH_TOKEN)
+        client = OffersClient(base_url=base_url, refresh_token=valid_refresh_token)
         
         invalid_id = "not-a-valid-uuid"
         
@@ -127,11 +123,11 @@ class TestOffersClientE2E:
         assert exc_info.value.status_code == 422
 
     @pytest.mark.asyncio
-    async def test_client_e2e_invalid_authentication(self, tmp_path):
+    async def test_client_e2e_invalid_authentication(self, base_url, tmp_path):
         """Testing authentication error with invalid refresh token"""
         invalid_token = "invalid-token"
         cache_file = tmp_path / "auth_cache.json"
-        client = OffersClient(base_url=BASE_URL, refresh_token=invalid_token)
+        client = OffersClient(base_url=base_url, refresh_token=invalid_token)
         client._auth.set_token_cache_path(cache_file)
         
         with pytest.raises(AuthenticationError) as exc_info:
@@ -144,14 +140,14 @@ class TestOffersClientE2E:
 
 
 class TestOffersClientE2EHttpClients:
-    """E2E testing with different HTTP clients"""
+    """Testing with different HTTP clients"""
     
     @pytest.mark.asyncio
-    async def test_client_e2e_with_httpx_client(self):
+    async def test_client_e2e_with_httpx_client(self, base_url, valid_refresh_token):
         """Testing HTTPXClient"""
         client = OffersClient(
-            base_url=BASE_URL, 
-            refresh_token=REFRESH_TOKEN,
+            base_url=base_url, 
+            refresh_token=valid_refresh_token,
             http_client=HTTPXClient()
         )
         
@@ -166,11 +162,11 @@ class TestOffersClientE2EHttpClients:
         assert isinstance(offers, list)
 
     @pytest.mark.asyncio
-    async def test_client_e2e_with_aiohttp_client(self):
+    async def test_client_e2e_with_aiohttp_client(self, base_url, valid_refresh_token):
         """Testing AioHTTPClient"""
         client = OffersClient(
-            base_url=BASE_URL, 
-            refresh_token=REFRESH_TOKEN,
+            base_url=base_url, 
+            refresh_token=valid_refresh_token,
             http_client=AioHTTPClient()
         )
         
@@ -185,11 +181,11 @@ class TestOffersClientE2EHttpClients:
         assert isinstance(offers, list)
 
     @pytest.mark.asyncio
-    async def test_client_e2e_with_requests_client(self):
+    async def test_client_e2e_with_requests_client(self, base_url, valid_refresh_token):
         """Testing RequestsClient"""
         client = OffersClient(
-            base_url=BASE_URL, 
-            refresh_token=REFRESH_TOKEN,
+            base_url=base_url, 
+            refresh_token=valid_refresh_token,
             http_client=RequestsClient()
         )
         

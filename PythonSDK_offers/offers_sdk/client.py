@@ -16,6 +16,7 @@ class OffersClient:
         self._http = http_client or HTTPXClient()  # defaultly using httpx
 
     async def _get_headers(self) -> dict:
+        '''Private method preparing the dict with relevant headers for a client.'''
         access_token = await self._auth.get_access_token()
         return {
             "accept": "application/json",
@@ -36,6 +37,7 @@ class OffersClient:
     
 
     async def register_product(self, name: str, description: str, id: Optional[UUID] = None) -> Product:
+        '''Method to register a single product.'''
         product = Product(id=id or uuid4(), name=name, description=description)  # generates ID automatically if not provided
         headers = await self._get_headers()
         response = await self._http.post(
@@ -69,6 +71,7 @@ class OffersClient:
 
 
     async def get_offers(self, product_id: str) -> List[Offer]:
+        '''Method to return all offers related to product with defined ID.'''
         headers = await self._get_headers()
         response = await self._http.get(
             f"{self._base_url}/api/v1/products/{product_id}/offers",

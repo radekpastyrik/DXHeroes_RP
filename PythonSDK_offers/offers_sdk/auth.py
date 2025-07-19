@@ -8,9 +8,8 @@ from pathlib import Path
 from datetime import datetime, timedelta
 import asyncio
 
-TOKEN_CACHE_FILE = Path(".auth_token_cache.json")
-TOKEN_VALIDITY_SECONDS = 5 * 60  # 5 minutes expiration time
-
+TOKEN_CACHE_FILE = Path(__file__).parent.parent / ".auth_token_cache.json"
+TOKEN_VALIDITY_SECONDS = 5 * 60  # five minutes expiration time
 
 class AuthManager:
     '''
@@ -30,7 +29,7 @@ class AuthManager:
         self._token_cache_path = path
 
     async def get_access_token(self) -> str:
-        # Try loading token from cache
+        '''Try loading token from cache or access a new one'''
         token_data = self._load_token_cache()
         if token_data:
             self._access_token = token_data["access_token"]
@@ -42,6 +41,7 @@ class AuthManager:
 
 
     async def refresh_access_token(self):
+        '''Refresh a new valid token for a next five minutes.'''
         headers = {
             "accept": "application/json",
             "Bearer": self._refresh_token
