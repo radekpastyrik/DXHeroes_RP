@@ -57,7 +57,7 @@ Example output:
 
 4. Check example files 
 
-PythonSDK_offers/examples/
+`PythonSDK_offers/examples/`
 
 and you can run it.
 
@@ -74,7 +74,7 @@ Note: `poetry version patch` and `poetry build` required before publishing!
 
 Installing by:
 
-`pip install -i https://test.pypi.org/simple/ offers`
+`pip install -i https://test.pypi.org/simple/ python_offers_sdk`
 
 Notes: There could happen error with older version of dependencies on TestPyPI. You can call `extra-index-url` to download up-to-date versions from pypi if this error exists
 
