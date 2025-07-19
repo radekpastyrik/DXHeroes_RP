@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python_offers_sdk"
-version = "0.1.0"
+version = "0.1.1"
 description = "Async Python SDK for Offers API"
 authors = ["Radek Pastyrik: radek.pastyrik@gmail.com"]
 license = "MIT"
@@ -20,7 +20,7 @@ tenacity = "^9.1.2"
 click = "^8.2.1"
 openapi-generator-cli = "^7.14.0"
 requests = "^2.32.4"
-aiohttp = "^3.12.14"
+aiohttp = "^3.8.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"

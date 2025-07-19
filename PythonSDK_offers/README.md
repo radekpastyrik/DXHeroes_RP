@@ -65,9 +65,9 @@ Installing by:
 
 pip install -i https://test.pypi.org/simple/ offers
 
-or 
+Notes: There could happen error with older version of dependencies on TestPyPI. You can call extra-index-url to download up-to-date versions from pypi if this error exists
 
-pip install dist/offers-0.1.0-py3-none-any.whl
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple python_offers_sdk
 
 
 ## Usage
