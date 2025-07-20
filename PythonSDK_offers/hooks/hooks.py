@@ -49,11 +49,11 @@ class HookManager:
             await hook(method, url, error)
 
 async def log_request(method, url, headers, payload):
-    print(f"1. [REQ] {method} \n2. {url} \n3. headers={headers} \n4. payload={payload}")
+    print(f"1. [REQ] {method} \n2. {url} \n3. headers={headers} \n4. payload={payload}\n")
 
 async def log_response(method, url, response):
     status = response.status if hasattr(response, "status") else response.status_code
-    print(f"1.[RES] {method} \n2. {url} \n3. {status}")
+    print(f"1.[RES] {method} \n2. {url} \n3. {status}\n")
 
 async def log_error(method: str, url: str, error: Exception):
-    print(f"1.[ERR] {method} \n2.{url} \n3. {type(error).__name__}: {error}")
+    print(f"1.[ERR] {method} \n2.{url} \n3. {type(error).__name__}: {error}\n")

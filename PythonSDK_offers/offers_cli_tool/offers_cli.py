@@ -19,11 +19,15 @@ def cli():
 @click.option('--description', required=False, help="Product description", default="Some virtual product description")
 @click.option('--id', required=False, help="Product ID (UUID). Optional.")
 @click.option('--client', type=click.Choice(['httpx', 'aiohttp', 'requests']), default='httpx')
-def register(name, description, id, client):
+@click.option('--hooks_usage', required=False, default=False)
+def register(name, description, id, client, hooks_usage):
     """Register a new product (optionally with custom ID)"""
     async def run():
         http_client = resolve_http_client(client)
-        sdk = OffersClient(base_url=base_url, refresh_token=refresh_token, http_client=http_client)
+        sdk = OffersClient(base_url=base_url, 
+                           refresh_token=refresh_token, 
+                           http_client=http_client, 
+                           hooks_usage=hooks_usage)
 
         product_id = UUID(id) if id else None
         product = await sdk.register_product(name=name, description=description, id=product_id)
@@ -48,11 +52,15 @@ def resolve_http_client(name: str):
 @cli.command()
 @click.argument('product_id')
 @click.option('--client', type=click.Choice(['httpx', 'aiohttp', 'requests']), default='httpx')
-def offers(product_id, client):
+@click.option('--hooks_usage', required=False, default=False)
+def offers(product_id, client, hooks_usage):
     """Get offers for a product"""
     async def run():
         http_client = resolve_http_client(client)
-        sdk = OffersClient(base_url=base_url, refresh_token=refresh_token, http_client=http_client)
+        sdk = OffersClient(base_url=base_url, 
+                           refresh_token=refresh_token, 
+                           http_client=http_client,
+                           hooks_usage=hooks_usage)
         offers = await sdk.get_offers(product_id=product_id)
         for offer in offers:
             click.echo(f"Received offer: {offer}")

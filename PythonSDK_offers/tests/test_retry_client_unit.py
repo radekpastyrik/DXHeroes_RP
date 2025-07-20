@@ -10,6 +10,7 @@ class DummyFailingClient:
     def __init__(self):
         self.call_count_get = 0
         self.call_count_post = 0
+        self.hooks = None
 
     async def get(self, url, headers):
         self.call_count_get += 1
@@ -22,6 +23,9 @@ class DummyFailingClient:
 
 class DummySucceedingClient:
     """Client which succeeds immediately"""
+    def __init__(self):
+        self.hooks = None
+        
     async def get(self, url, headers):
         return "GET_OK"
 
