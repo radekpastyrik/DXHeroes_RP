@@ -6,14 +6,34 @@ from .http_clients.aiohttp_client import AioHTTPClient
 from .http_clients.requests_client import RequestsClient
 from .auth import AuthManager
 from .models import Product, Offer, UUID, uuid4
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Literal
 import asyncio
+from hooks import HookManager, log_error, log_request, log_response
+
 
 class OffersClient:
-    def __init__(self, base_url: str, refresh_token: str, http_client: Optional[AsyncHTTPClient] = None):
+    def __init__(self, base_url: str, refresh_token: str, 
+                 http_client: Optional[AsyncHTTPClient] = None, 
+                 update_option: Literal["add", "replace"] = "add",
+                 hooks_usage: bool = False):
         self._auth = AuthManager(auth_url=f"{base_url}/api/v1/auth", refresh_token=refresh_token)
         self._base_url = base_url
+        
         self._http = http_client or HTTPXClient()  # defaultly using httpx
+        if hooks_usage:
+            if self._http.hooks is None:
+                self._http.hooks = HookManager()
+
+            if not len(self._http.hooks.on_request):
+                self._http.hooks.add_request_hook(log_request, update_option=update_option)
+
+            if not len(self._http.hooks.on_response):    
+                self._http.hooks.add_response_hook(log_response, update_option=update_option)
+            
+            if not len(self._http.hooks.on_error):
+                self._http.hooks.add_error_hook(log_error, update_option=update_option)
+
+            self._http.hooks.usage = hooks_usage
 
     async def _get_headers(self) -> dict:
         '''Private method preparing the dict with relevant headers for a client.'''

@@ -25,6 +25,7 @@ Provides an easy and Pythonic way to obtain&refresh access tokens, register prod
 - **Automatic generation of SDK** - using OpenAPI and given .json file there are generated methods to work with API.
 - **Synchronous wrapper** - included synchronous wrapper for an asynchronous implementation, running request until completed.
 - **TestPyPI** - SDK is published on [TestPyPI](https://test.pypi.org/project/python_offers_sdk/).
+- **Middleware hooks** - You can add and use middlewear hooks for logging, metric or custom headers.
 
 ## Installation
 Configuration file pyproject.toml in PythonSDK_offers folder, from here you can start all installation.

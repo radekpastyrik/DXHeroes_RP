@@ -8,6 +8,9 @@ from offers_sdk.http_clients.httpx_client import HTTPXClient
 from offers_sdk.http_clients.aiohttp_client import AioHTTPClient
 from offers_sdk.http_clients.retry_client import RetryingHTTPClient
 
+from hooks import HookManager, log_error, log_request, log_response
+
+
 load_dotenv()
 
 refresh_token: str = os.environ["REFRESH_TOKEN"]
@@ -15,7 +18,11 @@ BASE_URL: str = os.environ["BASE_URL"]
 
 async def main():
     # Original HTTP client (can be HTTPXClient or AioHTTPClient)
-    base_http_client = RequestsClient()
+    hook_manager = HookManager()
+    hook_manager.add_request_hook(log_request)
+    hook_manager.add_response_hook(log_response)
+    hook_manager.add_error_hook(log_error)
+    base_http_client = RequestsClient(hooks=hook_manager)  # hooks could be empty or hooks=None
 
     # Wrapped client with retry logic (exponential backoff, max 5 attempts)
     retrying_client = RetryingHTTPClient(base_http_client, max_attempts=5)
@@ -24,7 +31,8 @@ async def main():
     client = OffersClient(
         base_url=BASE_URL,
         refresh_token=refresh_token,
-        http_client=retrying_client
+        http_client=retrying_client,
+        hooks_usage=False  # you could enable hooks to see debug
     )
 
     # Register product

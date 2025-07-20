@@ -15,8 +15,13 @@ def main():
         Product(name="Virtual product C", description="...", id=uuid4())
     ]
 
+    # Define http client
+    http_client_definition = None  # defualt
     # Use synchronous client - defaultly HTTPX client is used
-    client = SyncOffersClient(base_url=BASE_URL, refresh_token=refresh_token)
+    client = SyncOffersClient(base_url=BASE_URL, 
+                              refresh_token=refresh_token, 
+                              http_client=http_client_definition,
+                              hooks_usage=False)  # you can define hooks usage
 
     results = client.register_products_batch(products)
     print("Batch registration results:")

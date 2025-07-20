@@ -5,10 +5,10 @@ from offers_sdk.models import Product, Offer, UUID
 from offers_sdk.exceptions import OffersAPIError
 
 class SyncOffersClient:
-    def __init__(self, base_url: str, refresh_token: str, http_client=None):
+    def __init__(self, base_url: str, refresh_token: str, http_client=None, hooks_usage: bool = False):
         self._loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self._loop)
-        self._client = OffersClient(base_url=base_url, refresh_token=refresh_token, http_client=http_client)
+        self._client = OffersClient(base_url=base_url, refresh_token=refresh_token, http_client=http_client, hooks_usage=hooks_usage)
 
     def register_products_batch(self, products: List[Product]) -> List[Union[Product, OffersAPIError]]:
         return self._loop.run_until_complete(self._client.register_products_batch(products))
