@@ -1,7 +1,6 @@
 from .base import AsyncHTTPClient
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 from typing import Dict, Any
-import asyncio
 
 
 class RetryingHTTPClient(AsyncHTTPClient):

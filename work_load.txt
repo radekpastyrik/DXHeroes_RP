@@ -12,6 +12,8 @@ Friday: 4h - Investigation of automatic generation via openapi (20-30m), impleme
 	2h - Investigation of using synchronous wrapper for async implementation, implementation of synchronous wrapper+creating example.
 
 Saturday: 3-4h finalizing publishing to testpypi, clearing files
+Sunday: 2h implementation of middleware hooks
 
 
-Total: 34h
+Total: 36h
+

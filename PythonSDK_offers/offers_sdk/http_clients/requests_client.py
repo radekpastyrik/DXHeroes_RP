@@ -2,7 +2,7 @@
 
 import requests
 import asyncio
-from typing import Dict, Any
+from typing import Dict
 from .base import AsyncHTTPClient
 
 

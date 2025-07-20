@@ -1,7 +1,7 @@
 # offers_sdk/http_clients/base.py
 from abc import ABC, abstractmethod
 from typing import Any, Dict
-from hooks import HookManager
+from hooks.hooks import HookManager
 
 
 class AsyncHTTPClient(ABC):

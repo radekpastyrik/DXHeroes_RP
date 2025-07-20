@@ -8,7 +8,7 @@ from offers_sdk.http_clients.httpx_client import HTTPXClient
 from offers_sdk.http_clients.aiohttp_client import AioHTTPClient
 from offers_sdk.http_clients.retry_client import RetryingHTTPClient
 
-from hooks import HookManager, log_error, log_request, log_response
+from hooks.hooks import HookManager, log_error, log_request, log_response
 
 
 load_dotenv()

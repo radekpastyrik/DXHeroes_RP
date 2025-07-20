@@ -8,7 +8,7 @@ from .auth import AuthManager
 from .models import Product, Offer, UUID, uuid4
 from typing import List, Optional, Union, Literal
 import asyncio
-from hooks import HookManager, log_error, log_request, log_response
+from hooks.hooks import HookManager, log_error, log_request, log_response
 
 
 class OffersClient:

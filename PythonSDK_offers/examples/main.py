@@ -2,8 +2,7 @@ import asyncio
 import os
 from dotenv import load_dotenv
 from offers_sdk.client import OffersClient, Product, Offer, List, UUID, uuid4, HTTPXClient, AioHTTPClient, RequestsClient
-from hooks import HookManager, log_error, log_request, log_response
-
+from hooks.hooks import HookManager, log_error, log_request, log_response
 load_dotenv()
 REFRESH_TOKEN: str = os.environ["REFRESH_TOKEN"]
 BASE_URL: str = os.environ["BASE_URL"]
