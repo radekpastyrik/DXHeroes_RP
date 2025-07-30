@@ -10,6 +10,7 @@ class HTTPXClient(AsyncHTTPClient):
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(url, headers=headers)
+                response.json_data = response.json()
             await self.hooks.run_response_hooks(method, url, response)
             return response
         except Exception as e:
@@ -22,6 +23,7 @@ class HTTPXClient(AsyncHTTPClient):
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.post(url, headers=headers, json=json)
+                response.json_data = response.json()
             await self.hooks.run_response_hooks(method, url, response)
             return response
         except Exception as e:

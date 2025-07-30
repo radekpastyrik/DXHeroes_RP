@@ -1,12 +1,8 @@
-import os
-from dotenv import load_dotenv
 from offers_sdk.http_clients.sync_client import SyncOffersClient
 from offers_sdk.models import Product, Offer, UUID, uuid4
 from typing import List
 
-load_dotenv()
-refresh_token: str = os.environ["REFRESH_TOKEN"]
-BASE_URL: str = os.environ["BASE_URL"]
+from config import REFRESH_TOKEN, BASE_URL
 
 def main():
     products = [
@@ -19,7 +15,7 @@ def main():
     http_client_definition = None  # defualt
     # Use synchronous client - defaultly HTTPX client is used
     client = SyncOffersClient(base_url=BASE_URL, 
-                              refresh_token=refresh_token, 
+                              refresh_token=REFRESH_TOKEN, 
                               http_client=http_client_definition,
                               hooks_usage=False)  # you can define hooks usage
 

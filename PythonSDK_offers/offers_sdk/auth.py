@@ -1,6 +1,6 @@
 from .http_clients.httpx_client import HTTPXClient
 from .http_clients.base import AsyncHTTPClient
-from .exceptions import *  # import of all exceptions + httpx
+from .exceptions import *  # import of all exceptions
 # import httpx
 import json
 from typing import Optional
@@ -8,8 +8,8 @@ from pathlib import Path
 from datetime import datetime, timedelta
 import asyncio
 
-TOKEN_CACHE_FILE = Path(__file__).parent.parent / ".auth_token_cache.json"
-TOKEN_VALIDITY_SECONDS = 5 * 60  # five minutes expiration time
+from config import TOKEN_CACHE_PATH, TOKEN_VALIDITY_SECONDS
+TOKEN_CACHE_FILE = Path(__file__).parent.parent / TOKEN_CACHE_PATH
 
 class AuthManager:
     '''

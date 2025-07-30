@@ -1,4 +1,4 @@
-from .exceptions import *  # import of all exceptions + httpx
+from .exceptions import *  # import of all exceptions
 # import httpx
 from .http_clients.base import AsyncHTTPClient
 from .http_clients.httpx_client import HTTPXClient  # default backend
@@ -25,6 +25,7 @@ class OffersClient:
                 self._http.hooks = HookManager()
 
             if not len(self._http.hooks.on_request):
+                # If hooks are empty, include default one - set update_option (add - default)
                 self._http.hooks.add_request_hook(log_request, update_option=update_option)
 
             if not len(self._http.hooks.on_response):    
@@ -38,6 +39,7 @@ class OffersClient:
     async def _get_headers(self) -> dict:
         '''Private method preparing the dict with relevant headers for a client.'''
         access_token = await self._auth.get_access_token()
+        # There could be extension for adapting the headers by any function for attribute of OffersClient
         return {
             "accept": "application/json",
             "Content-Type": "application/json",
@@ -67,14 +69,16 @@ class OffersClient:
         )
 
         status = response.status if hasattr(response, "status") else response.status_code
-        if hasattr(response, "json_data"):
+        body = response.json_data
+        # Eliminated this logic due to generalizing the common output structure
+        '''if hasattr(response, "json_data"):
             body = response.json_data
         else:
             maybe_coro = response.json()
             if asyncio.iscoroutine(maybe_coro):
                 body = await maybe_coro
             else:
-                body = maybe_coro
+                body = maybe_coro'''
 
         error_map = {
             401: AuthenticationError,

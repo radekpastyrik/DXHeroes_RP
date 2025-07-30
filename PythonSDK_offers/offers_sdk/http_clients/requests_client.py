@@ -1,5 +1,4 @@
 # offers_sdk/http_clients/requests_client.py
-
 import requests
 import asyncio
 from typing import Dict
@@ -14,6 +13,7 @@ class RequestsClient(AsyncHTTPClient):
         try:
             # Command asyncio.to_thread allows to run sync code in separate thread
             resp = await asyncio.to_thread(requests.get, url, headers=headers)
+            resp.json_data = resp.json()
             await self.hooks.run_response_hooks(method, url, resp)
             return resp
         except Exception as e:
@@ -27,6 +27,7 @@ class RequestsClient(AsyncHTTPClient):
         try:
             # Command asyncio.to_thread allows to run sync code in separate thread
             resp = await asyncio.to_thread(requests.post, url, headers=headers, json=json)
+            resp.json_data = resp.json()
             await self.hooks.run_response_hooks(method, url, resp)
             return resp
         except Exception as e:

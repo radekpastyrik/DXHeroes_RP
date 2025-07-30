@@ -1,5 +1,4 @@
 # offers_sdk/http_clients/aiohttp_client.py
-
 import aiohttp
 from .base import AsyncHTTPClient
 

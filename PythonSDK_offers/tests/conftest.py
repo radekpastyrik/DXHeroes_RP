@@ -1,10 +1,6 @@
 import pytest
-import os
-from dotenv import load_dotenv
-load_dotenv()
+from config import BASE_URL, REFRESH_TOKEN, TOKEN_CACHE_PATH
 
-BASE_URL: str = os.environ["BASE_URL"]
-REFRESH_TOKEN: str = os.environ["REFRESH_TOKEN"]
 
 @pytest.fixture
 def refresh_token() -> str:
@@ -20,4 +16,4 @@ def valid_refresh_token() -> str:
 
 @pytest.fixture
 def temp_token_file(tmp_path):
-    return tmp_path / ".auth_token_cache.json"
+    return tmp_path / TOKEN_CACHE_PATH

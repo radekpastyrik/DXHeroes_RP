@@ -1,8 +1,6 @@
-import os
 import pytest
 from offers_sdk.auth import AuthManager
 from offers_sdk.exceptions import AuthenticationError, BadRequestError, ValidationError, OffersAPIError
-from pathlib import Path
 from offers_sdk.http_clients.aiohttp_client import AioHTTPClient
 from offers_sdk.http_clients.requests_client import RequestsClient
 

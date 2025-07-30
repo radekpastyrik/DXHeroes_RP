@@ -1,4 +1,3 @@
-import os
 import pytest
 import time
 from uuid import uuid4

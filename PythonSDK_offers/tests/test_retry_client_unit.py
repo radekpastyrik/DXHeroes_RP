@@ -42,6 +42,26 @@ async def test_retry_client_get_success():
     result = await client.get("https://fake-url", headers={})
     assert result == "GET_OK"
 
+
+@pytest.mark.asyncio
+async def test_mocking_retry_client_get_success():
+    mock_client = AsyncMock()
+    mock_client.get.return_value = "GET_OK"
+
+    client = RetryingHTTPClient(mock_client)
+
+    headers = {"x-test": "value"}
+    result = await client.get("https://fake-url", headers=headers)
+
+    assert result == "GET_OK"
+
+    mock_client.get.assert_awaited_once()
+    args, _ = mock_client.get.await_args
+
+    assert args[0] == "https://fake-url"
+    assert args[1] == headers
+
+
 @pytest.mark.asyncio
 async def test_retry_client_post_success():
     """Test that POST succeeds without retry"""
@@ -50,6 +70,30 @@ async def test_retry_client_post_success():
 
     result = await client.post("https://fake-url", headers={}, json={})
     assert result == "POST_OK"
+
+
+@pytest.mark.asyncio
+async def test_mocking_retry_client_post_success():
+    """Test that POST succeeds without retry"""
+    mock_client = AsyncMock()
+    mock_client.post.return_value = "POST_OK"
+
+    client = RetryingHTTPClient(mock_client)
+
+    headers = {"Authorization": "Bearer token"}
+    json_data = {"key": "value"}
+
+    result = await client.post("https://fake-url", headers=headers, json=json_data)
+
+    assert result == "POST_OK"
+
+    mock_client.post.assert_awaited_once()
+    args, kwargs = mock_client.post.await_args
+
+    assert args[0] == "https://fake-url"
+    assert args[1] == headers
+    assert args[2] == json_data
+
 
 @pytest.mark.asyncio
 async def test_retry_client_get_with_retries():

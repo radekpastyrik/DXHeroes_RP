@@ -1,11 +1,9 @@
 import asyncio
 import uuid
-import os
 import json
 from typing import Optional
 from pathlib import Path
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
 from python_exercise_client.client import Client, AuthenticatedClient
 from python_exercise_client.api.default import auth_api_v1_auth_post
 from python_exercise_client.api.default import (
@@ -13,13 +11,9 @@ from python_exercise_client.api.default import (
     register_product_api_v1_products_register_post,
 )
 from python_exercise_client.models import RegisterProductRequest, AuthResponse
-
-load_dotenv()
-REFRESH_TOKEN = os.environ["REFRESH_TOKEN"]
-BASE_URL = os.environ["BASE_URL"]
-TOKEN_CACHE_PATH = Path(".auth_token_cache.json")
-TOKEN_VALIDITY_SECONDS = 5 * 60  # token valid 5 min
+from config import REFRESH_TOKEN, BASE_URL, TOKEN_CACHE_PATH, TOKEN_VALIDITY_SECONDS
 MAIN_DIR = Path(__file__).parent.parent
+
 
 def load_cached_token() -> Optional[dict]:
     '''Checker for loading of access token if generated recently.'''

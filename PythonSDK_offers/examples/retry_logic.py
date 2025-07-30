@@ -1,7 +1,4 @@
 import asyncio
-import os
-from dotenv import load_dotenv
-
 from offers_sdk.client import OffersClient, Product, Offer, List, UUID, uuid4
 from offers_sdk.http_clients.requests_client import RequestsClient
 from offers_sdk.http_clients.httpx_client import HTTPXClient
@@ -10,11 +7,8 @@ from offers_sdk.http_clients.retry_client import RetryingHTTPClient
 
 from hooks.hooks import HookManager, log_error, log_request, log_response
 
+from config import REFRESH_TOKEN, BASE_URL
 
-load_dotenv()
-
-refresh_token: str = os.environ["REFRESH_TOKEN"]
-BASE_URL: str = os.environ["BASE_URL"]
 
 async def main():
     # Original HTTP client (can be HTTPXClient or AioHTTPClient)
@@ -30,7 +24,7 @@ async def main():
     # Initialize main OffersClient with retry client
     client = OffersClient(
         base_url=BASE_URL,
-        refresh_token=refresh_token,
+        refresh_token=REFRESH_TOKEN,
         http_client=retrying_client,
         hooks_usage=False  # you could enable hooks to see debug
     )

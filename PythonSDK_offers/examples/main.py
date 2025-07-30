@@ -1,12 +1,13 @@
 import asyncio
-import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from offers_sdk.client import OffersClient, Product, Offer, List, UUID, uuid4, HTTPXClient, AioHTTPClient, RequestsClient
 from hooks.hooks import HookManager, log_error, log_request, log_response
-load_dotenv()
-REFRESH_TOKEN: str = os.environ["REFRESH_TOKEN"]
-BASE_URL: str = os.environ["BASE_URL"]
 
+# Fixed all the time same definitions of constants
+# load_dotenv()
+# REFRESH_TOKEN: str = os.environ["REFRESH_TOKEN"]
+# BASE_URL: str = os.environ["BASE_URL"]
+from config import REFRESH_TOKEN, BASE_URL
 
 '''
 # Example patterns for hooks
@@ -41,9 +42,12 @@ async def main():
     ]
 
     # Register products in batch
-    client = OffersClient(base_url=BASE_URL, refresh_token=REFRESH_TOKEN, hooks_usage=True)
+    client = OffersClient(base_url=BASE_URL, 
+                          refresh_token=REFRESH_TOKEN, 
+                          hooks_usage=True, 
+                          http_client=HTTPXClient())  # defaultly HTTPX
     # or define http client
-    # client = OffersClient(base_url=BASE_URL, refresh_token=REFRESH_TOKEN, http_client=HTTPXClient())  # or http_client
+    # client = OffersClient(base_url=BASE_URL, refresh_token=REFRESH_TOKEN, http_client=AioHTTPClient())  # or http_client
     results = await client.register_products_batch(products)
     print("Multiple registred products:\n" + "\n".join(str(result) for result in results) + "\n")
 

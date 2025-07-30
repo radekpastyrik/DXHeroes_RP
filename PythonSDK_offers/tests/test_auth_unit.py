@@ -1,9 +1,7 @@
 import pytest
-import asyncio
 import json
 from datetime import datetime, timedelta
-from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock
 from offers_sdk.auth import AuthManager
 from offers_sdk.exceptions import AuthenticationError, BadRequestError, ValidationError, OffersAPIError
 from offers_sdk.http_clients.base import AsyncHTTPClient
