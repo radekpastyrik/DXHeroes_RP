@@ -36,10 +36,10 @@ async def main():
     http_client = HTTPXClient(hooks=hook_manager)'''
 
     products = [
-    Product(name="Virtual product A", description="...", id=uuid4()),
-    Product(name="Virtual product B", description="...", id=uuid4()),
-    Product(name="Virtual product C", description="...", id=uuid4())
-    ]
+        Product(name="Virtual product A", description="...", id=uuid4()),
+        Product(name="Virtual product B", description="...", id=uuid4()),
+        Product(name="Virtual product C", description="...", id=uuid4())
+        ]
 
     # Register products in batch
     client = OffersClient(base_url=BASE_URL, 
