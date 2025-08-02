@@ -64,6 +64,9 @@ async def main():
     offers: List[Offer] = await client.get_offers(product_id=str(randomUUID))
     print(f"Offers for product UUID: '{product.id}'\n" + "\n".join(str(offer) for offer in offers))
 
+    # Closing client manually because context manager excluded on request - closing only for HTTPX
+    await client.aclose()
+
 
 if __name__ == "__main__":
     asyncio.run(main())

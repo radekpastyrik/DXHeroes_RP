@@ -15,6 +15,12 @@ class HTTPXClient(AsyncHTTPClient):
         if self._client is None:
             self._client = httpx.AsyncClient(**self._client_config)
 
+    async def aclose(self):
+        '''Closing instance manually because async with not used in here.'''
+        if self._client is not None:
+            # Maybe could be used also __aexit__
+            await self._client.aclose()
+
     async def get(self, url: str, headers: dict) -> httpx.Response:
         method = "GET"
         await self.hooks.run_request_hooks(method, url, headers, {})

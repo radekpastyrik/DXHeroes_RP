@@ -36,6 +36,11 @@ class OffersClient:
 
             self._http.hooks.usage = hooks_usage
 
+    async def aclose(self):
+        '''Close HTTP client if used HTTPXClient.'''
+        if self._http and isinstance(self._http, HTTPXClient):
+            await self._http.aclose()
+        
     async def _get_headers(self) -> dict:
         '''Private method preparing the dict with relevant headers for a client.'''
         access_token = await self._auth.get_access_token()
